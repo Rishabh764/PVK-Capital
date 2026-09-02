@@ -433,7 +433,7 @@ body.menu-open{overflow:hidden}
 .field-val:focus-within{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(124,27,36,.09)}
 .field-val i{font-style:normal;font-size:.9rem;color:var(--muted);font-weight:600}
 .field-val input{
-  width:92px;border:0;background:transparent;text-align:right;font-size:.98rem;font-weight:700;
+  width:106px;border:0;background:transparent;text-align:right;font-size:.98rem;font-weight:700;
   color:var(--ink);outline:none;font-variant-numeric:tabular-nums;
 }
 .field-val input::-webkit-outer-spin-button,.field-val input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
@@ -669,6 +669,30 @@ input[type=range]::-moz-range-thumb{
   .founder-badge{right:0;bottom:-18px}
   .photo-frame::after{inset:14px -14px -14px 14px}
   .totop{right:16px;bottom:16px}
+
+  /* Full-width, stacked call-to-action buttons read better under a thumb than
+     a wrapped row of pills once the screen gets this narrow. */
+  .hero-actions,.cta-actions,.svc-cta{flex-direction:column;align-items:stretch}
+  .hero-actions .btn,.cta-actions .btn,.svc-cta .btn,.svc-cta .btn-ghost{width:100%}
+
+  /* iOS Safari zooms the viewport on focus of any input under 16px — keep every
+     form field and calculator field at or above that line on touch-width screens. */
+  .fg input,.fg select,.fg textarea,.field-val input{font-size:16px}
+
+  /* A long label next to a wide 9-digit rupee value can outgrow a narrow phone —
+     let the value drop to its own line instead of clipping or squeezing the label. */
+  .field-top{flex-wrap:wrap;row-gap:8px}
+  .field-top label{flex:1 1 100%}
+}
+
+@media (max-width:400px){
+  /* The tagline's letter-spacing makes it wide relative to its font-size; on the
+     smallest phones it crowds the burger button, so drop it and keep just the name. */
+  .brand-txt span{display:none}
+  .hero h1{font-size:clamp(2.2rem,9vw,2.7rem)}
+  .h-xl{font-size:clamp(2.1rem,9vw,2.6rem)}
+  .quote{font-size:1.2rem;padding-left:20px}
+  .calc-result-main b{font-size:clamp(1.85rem,9vw,2.4rem)}
 }
 
 /* ---------- 23. Motion / print ---------- */
