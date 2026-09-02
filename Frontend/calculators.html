@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP &amp; Lumpsum Calculators (INR) | PVK Capital</title>
+<meta name="description" content="Free SIP, step-up SIP and lumpsum calculators in Indian Rupees. See your projected corpus, total invested amount and estimated returns year by year.">
+<meta name="theme-color" content="#7C1B24">
+<link rel="icon" type="image/png" href="assets/img/pvk-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="readbar"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PVK Capital — home">
+      <img src="assets/img/pvk-logo.png" alt="PVK Capital">
+      <span class="brand-txt"><b>PVK Capital</b><span>Preservation • Value • Knowledge</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="contact.html#enquiry">Book a consultation
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-controls="mobile-menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="contact.html">Contact</a>
+  <a class="btn btn-primary" href="contact.html#enquiry" style="border-bottom:0">Book a consultation</a>
+</div>
+
+<main>
+
+<!-- ============ PAGE HEAD ============ -->
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      <span>Calculators</span>
+    </div>
+    <span class="eyebrow">Plan the numbers</span>
+    <h1 class="h-xl" style="max-width:14ch">See what compounding actually does.</h1>
+    <p class="lede" style="margin-top:26px">
+      Two calculators, both in Indian Rupees. Move the sliders, watch the projection update instantly, and
+      then bring the result to a conversation with us.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CALCULATORS ============ -->
+<section class="section bg-cream">
+  <div class="wrap">
+
+    <div style="display:flex;justify-content:center" data-rv>
+      <div class="tabs" data-tabs role="tablist" aria-label="Calculator type">
+        <button class="tab on" type="button" role="tab" aria-selected="true" data-target="sip">Monthly SIP</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-target="lumpsum">One-time Lumpsum</button>
+      </div>
+    </div>
+
+    <!-- ---------- SIP PANEL ---------- -->
+    <div data-panel="sip">
+      <div class="calc" data-calc="sip" data-rv data-rv-d="1">
+        <div class="calc-controls">
+          <h2 class="h-sm" style="margin-bottom:6px">Systematic Investment Plan</h2>
+          <p class="small muted" style="margin-bottom:30px">A fixed amount invested every month, compounding as it goes.</p>
+
+          <div class="field" data-field="amount">
+            <div class="field-top">
+              <label for="s-amt">Monthly investment</label>
+              <span class="field-val"><i>₹</i><input id="s-amt" type="number" value="25000" min="500" max="1000000" step="500" inputmode="numeric" aria-label="Monthly investment in rupees"></span>
+            </div>
+            <input type="range" min="500" max="1000000" step="500" value="25000" aria-label="Monthly investment slider">
+            <div class="range-scale"><span>₹500</span><span>₹10 lakh</span></div>
+          </div>
+
+          <div class="field" data-field="rate">
+            <div class="field-top">
+              <label for="s-rate">Expected return (p.a.)</label>
+              <span class="field-val"><input id="s-rate" type="number" value="12" min="1" max="30" step="0.5" inputmode="decimal" aria-label="Expected annual return percentage"><i>%</i></span>
+            </div>
+            <input type="range" min="1" max="30" step="0.5" value="12" aria-label="Expected return slider">
+            <div class="range-scale"><span>1%</span><span>30%</span></div>
+          </div>
+
+          <div class="field" data-field="years">
+            <div class="field-top">
+              <label for="s-yrs">Investment period</label>
+              <span class="field-val"><input id="s-yrs" type="number" value="15" min="1" max="40" step="1" inputmode="numeric" aria-label="Investment period in years"><i>yr</i></span>
+            </div>
+            <input type="range" min="1" max="40" step="1" value="15" aria-label="Investment period slider">
+            <div class="range-scale"><span>1 year</span><span>40 years</span></div>
+          </div>
+
+          <div class="field" data-field="stepup" style="margin-bottom:0">
+            <div class="field-top">
+              <label for="s-step">Annual step-up <span class="muted" style="font-weight:400">(optional)</span></label>
+              <span class="field-val"><input id="s-step" type="number" value="0" min="0" max="25" step="1" inputmode="numeric" aria-label="Annual step-up percentage"><i>%</i></span>
+            </div>
+            <input type="range" min="0" max="25" step="1" value="0" aria-label="Annual step-up slider">
+            <div class="range-scale"><span>0%</span><span>25%</span></div>
+          </div>
+
+          <p class="calc-note">
+            <strong>Step-up</strong> increases your monthly contribution by this percentage every year — the single
+            most effective way to grow a corpus without feeling the pinch, because contributions rise alongside
+            your income. Try 10% and watch the difference.
+          </p>
+        </div>
+
+        <div class="calc-out">
+          <div class="calc-result-main">
+            <span>Projected corpus</span>
+            <b class="gold-text" data-out="total">₹0</b>
+            <em data-out="total-words"></em>
+          </div>
+
+          <div class="donut-wrap">
+            <svg class="donut" width="168" height="168" viewBox="0 0 168 168" aria-hidden="true">
+              <circle data-donut="track" cx="84" cy="84" r="68" stroke="#C6892C" stroke-width="18" opacity=".85"></circle>
+              <circle data-donut="arc" cx="84" cy="84" r="68" stroke="#CBBEAB" stroke-width="18"></circle>
+            </svg>
+            <div class="donut-mid">
+              <b class="gold-text" data-out="gain-pct">0%</b>
+              <span>Gain on investment</span>
+            </div>
+          </div>
+
+          <div class="calc-breakdown">
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#CBBEAB"></i> Total invested</span>
+              <span class="cb-v" data-out="invested">₹0</span>
+            </div>
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#C6892C"></i> Estimated returns</span>
+              <span class="cb-v" data-out="returns">₹0</span>
+            </div>
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#7C1B24"></i> Wealth multiple</span>
+              <span class="cb-v" data-out="multiple">0x</span>
+            </div>
+          </div>
+
+          <h3 class="h-sm" style="margin-top:32px;font-size:1.05rem">Year-by-year growth</h3>
+          <svg class="growth-chart" data-chart role="img" aria-label="Bar chart showing invested amount and estimated returns for each year"></svg>
+          <div class="chart-legend">
+            <span><i class="swatch" style="background:#CBBEAB;width:11px;height:11px;border-radius:3px;display:inline-block"></i> Invested</span>
+            <span><i class="swatch" style="background:#C6892C;width:11px;height:11px;border-radius:3px;display:inline-block"></i> Returns</span>
+          </div>
+
+          <div class="calc-cta">
+            <a class="btn btn-primary btn-block" data-plan-cta href="contact.html#enquiry">
+              Discuss this plan with us
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- LUMPSUM PANEL ---------- -->
+    <div data-panel="lumpsum" hidden>
+      <div class="calc" data-calc="lumpsum">
+        <div class="calc-controls">
+          <h2 class="h-sm" style="margin-bottom:6px">Lumpsum Investment</h2>
+          <p class="small muted" style="margin-bottom:30px">A single amount invested once and left to compound.</p>
+
+          <div class="field" data-field="amount">
+            <div class="field-top">
+              <label for="l-amt">Investment amount</label>
+              <span class="field-val"><i>₹</i><input id="l-amt" type="number" value="1000000" min="5000" max="100000000" step="5000" inputmode="numeric" aria-label="Lumpsum investment in rupees"></span>
+            </div>
+            <input type="range" min="5000" max="100000000" step="5000" value="1000000" aria-label="Investment amount slider">
+            <div class="range-scale"><span>₹5,000</span><span>₹10 crore</span></div>
+          </div>
+
+          <div class="field" data-field="rate">
+            <div class="field-top">
+              <label for="l-rate">Expected return (p.a.)</label>
+              <span class="field-val"><input id="l-rate" type="number" value="12" min="1" max="30" step="0.5" inputmode="decimal" aria-label="Expected annual return percentage"><i>%</i></span>
+            </div>
+            <input type="range" min="1" max="30" step="0.5" value="12" aria-label="Expected return slider">
+            <div class="range-scale"><span>1%</span><span>30%</span></div>
+          </div>
+
+          <div class="field" data-field="years" style="margin-bottom:0">
+            <div class="field-top">
+              <label for="l-yrs">Investment period</label>
+              <span class="field-val"><input id="l-yrs" type="number" value="10" min="1" max="40" step="1" inputmode="numeric" aria-label="Investment period in years"><i>yr</i></span>
+            </div>
+            <input type="range" min="1" max="40" step="1" value="10" aria-label="Investment period slider">
+            <div class="range-scale"><span>1 year</span><span>40 years</span></div>
+          </div>
+
+          <p class="calc-note">
+            Returns here compound annually. In practice we rarely deploy a large lumpsum into equity on a
+            single day — it is usually parked in a liquid fund and moved across through a systematic transfer
+            plan, which reduces the risk of investing everything at a market peak.
+          </p>
+        </div>
+
+        <div class="calc-out">
+          <div class="calc-result-main">
+            <span>Projected corpus</span>
+            <b class="gold-text" data-out="total">₹0</b>
+            <em data-out="total-words"></em>
+          </div>
+
+          <div class="donut-wrap">
+            <svg class="donut" width="168" height="168" viewBox="0 0 168 168" aria-hidden="true">
+              <circle data-donut="track" cx="84" cy="84" r="68" stroke="#C6892C" stroke-width="18" opacity=".85"></circle>
+              <circle data-donut="arc" cx="84" cy="84" r="68" stroke="#CBBEAB" stroke-width="18"></circle>
+            </svg>
+            <div class="donut-mid">
+              <b class="gold-text" data-out="gain-pct">0%</b>
+              <span>Gain on investment</span>
+            </div>
+          </div>
+
+          <div class="calc-breakdown">
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#CBBEAB"></i> Amount invested</span>
+              <span class="cb-v" data-out="invested">₹0</span>
+            </div>
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#C6892C"></i> Estimated returns</span>
+              <span class="cb-v" data-out="returns">₹0</span>
+            </div>
+            <div class="cb-row">
+              <span class="cb-k"><i class="swatch" style="background:#7C1B24"></i> Wealth multiple</span>
+              <span class="cb-v" data-out="multiple">0x</span>
+            </div>
+          </div>
+
+          <h3 class="h-sm" style="margin-top:32px;font-size:1.05rem">Year-by-year growth</h3>
+          <svg class="growth-chart" data-chart role="img" aria-label="Bar chart showing invested amount and estimated returns for each year"></svg>
+          <div class="chart-legend">
+            <span><i class="swatch" style="background:#CBBEAB;width:11px;height:11px;border-radius:3px;display:inline-block"></i> Invested</span>
+            <span><i class="swatch" style="background:#C6892C;width:11px;height:11px;border-radius:3px;display:inline-block"></i> Returns</span>
+          </div>
+
+          <div class="calc-cta">
+            <a class="btn btn-primary btn-block" data-plan-cta href="contact.html#enquiry">
+              Discuss this plan with us
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ HOW THE MATHS WORKS ============ -->
+<section class="section bg-white">
+  <div class="wrap">
+    <div class="section-head" data-rv>
+      <span class="eyebrow">No black box</span>
+      <h2 class="h-lg">How these numbers are calculated.</h2>
+      <p class="lede">
+        You should be able to reproduce every figure on this page yourself. Here is exactly what the
+        calculators do.
+      </p>
+    </div>
+
+    <div class="calc-intro-grid">
+      <div class="mini" data-rv data-rv-d="1">
+        <h4>SIP future value</h4>
+        <p>
+          Each monthly contribution is added at the start of the month and grows for the remaining months at
+          one-twelfth of the annual rate. Summed across the full period, this is the standard annuity-due
+          formula.
+        </p>
+        <div class="formula">FV = P × [((1+i)ⁿ − 1) ÷ i] × (1+i)</div>
+        <p class="small muted" style="margin-top:12px">
+          <strong>P</strong> monthly amount · <strong>i</strong> monthly rate (annual ÷ 12 ÷ 100) ·
+          <strong>n</strong> number of months
+        </p>
+      </div>
+
+      <div class="mini" data-rv data-rv-d="2">
+        <h4>Step-up SIP</h4>
+        <p>
+          With a step-up, the contribution increases by your chosen percentage after every twelve
+          instalments. The calculator runs the balance forward month by month rather than using a closed-form
+          formula, so the result stays exact.
+        </p>
+        <div class="formula">Pyear+1 = Pyear × (1 + step-up%)</div>
+        <p class="small muted" style="margin-top:12px">
+          A 10% annual step-up on a 15-year SIP typically adds substantially more than a 10% larger corpus.
+        </p>
+      </div>
+
+      <div class="mini" data-rv data-rv-d="3">
+        <h4>Lumpsum future value</h4>
+        <p>
+          A single amount compounding annually for the full period. Nothing is added or withdrawn along the
+          way, which is why the growth curve is smooth rather than stepped.
+        </p>
+        <div class="formula">FV = P × (1 + r)^y</div>
+        <p class="small muted" style="margin-top:12px">
+          <strong>P</strong> amount invested · <strong>r</strong> annual rate ÷ 100 · <strong>y</strong> years
+        </p>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:36px;max-width:none" data-rv>
+      <strong>What these calculators do not do.</strong> They assume a constant rate of return, which no
+      market-linked investment delivers — real returns arrive unevenly, and the sequence matters. They also
+      exclude expense ratios, exit loads, capital gains tax and inflation. Treat the output as a planning
+      aid for comparing scenarios, not as a projection of what you will receive. A real plan adjusts for all
+      four, and that is the conversation we would like to have with you.
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TO DO NEXT ============ -->
+<section class="section bg-cream">
+  <div class="wrap">
+    <div class="section-head center" data-rv>
+      <span class="eyebrow">Reading the result</span>
+      <h2 class="h-lg">Three things worth noticing.</h2>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card" data-rv data-rv-d="1">
+        <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></span>
+        <h3>Time beats amount</h3>
+        <p>Extend a 15-year SIP to 25 years and the corpus usually more than triples, even though you only invested about 67% more. The last decade does most of the work, which is why starting late is expensive in a way that saving less is not.</p>
+      </article>
+
+      <article class="card" data-rv data-rv-d="2">
+        <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+        <h3>Step-up is the quiet lever</h3>
+        <p>Raising your SIP by 10% each year tracks a normal salary increment, so it never feels like a sacrifice — yet over two decades it can change the outcome more than chasing two extra percentage points of return ever will.</p>
+      </article>
+
+      <article class="card" data-rv data-rv-d="3">
+        <span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3.5v6c0 4.8-3.3 8.4-8 9.5-4.7-1.1-8-4.7-8-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>Be honest about the rate</h3>
+        <p>12% is a reasonable long-run assumption for a diversified Indian equity portfolio. Anything above 15% as a planning assumption is optimism, not planning — and a plan built on optimism fails quietly, years later.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section-sm bg-white">
+  <div class="wrap">
+    <div class="cta-band" data-rv>
+      <span class="eyebrow" style="color:var(--gold-lt)">From projection to plan</span>
+      <h2 class="h-lg">A number is not a plan.<br>Let us build the rest.</h2>
+      <p>
+        Send us the scenario you just modelled. We will tell you what it takes to actually get there — the
+        allocation, the products, the tax treatment and the protection that has to sit underneath it.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="contact.html#enquiry">Book a consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="services.html">Explore the services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/pvk-logo.png" alt="PVK Capital" style="height:52px;filter:brightness(1.08)">
+          <span class="brand-txt"><b>PVK Capital</b><span>Preservation • Value • Knowledge</span></span>
+        </a>
+        <p class="footer-about">
+          A boutique wealth management practice founded by Vedant Shah — bringing investments,
+          protection, lending and succession into one plan for Indian families and NRIs.
+        </p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="services.html#mutual-funds">Mutual Funds</a></li>
+          <li><a href="services.html#pms">PMS</a></li>
+          <li><a href="services.html#sif">SIF</a></li>
+          <li><a href="services.html#aif">AIF</a></li>
+          <li><a href="services.html#bonds">Bonds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul class="footer-links">
+          <li><a href="services.html#gift-city">GIFT City Funds</a></li>
+          <li><a href="services.html#insurance">Insurance</a></li>
+          <li><a href="services.html#succession">Succession Planning</a></li>
+          <li><a href="services.html#loans">Loans</a></li>
+          <li><a href="calculators.html">Calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+          <li><a data-inbox data-inbox-text href="mailto:contact@pvkcapital.in">contact@pvkcapital.in</a></li>
+          <li><a data-whatsapp href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li><a href="contact.html#enquiry">Book a consultation</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> PVK Capital. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05a4.2 4.2 0 0 1 3.75-2c4 0 4.75 2.6 4.75 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        <a data-whatsapp href="https://wa.me/919999999999" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7a11.6 11.6 0 0 1-4.8-4.2c-.4-.5-1-1.5-1-2.8s.7-2 .9-2.3a1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6a8.6 8.6 0 0 0 1.6 2 7.8 7.8 0 0 0 2.2 1.4c.3.1.5.1.6 0l1-1.2c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3a2 2 0 0 1-.4 1.2z"/></svg></a>
+        <a data-inbox href="mailto:contact@pvkcapital.in" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></a>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> The calculators on this page are illustrative tools. They assume a constant
+      rate of return and exclude expense ratios, exit loads, taxes and inflation. They do not constitute a
+      guarantee, projection or assurance of returns. Mutual fund and securities investments are subject to
+      market risks; read all scheme-related documents carefully before investing. Past performance is not
+      indicative of future results.
+    </p>
+  </div>
+</footer>
+
+<button class="totop" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/calculators.js"></script>
+<script src="assets/js/forms.js"></script>
+</body>
+</html>
