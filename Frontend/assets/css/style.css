@@ -340,7 +340,7 @@ body.menu-open{overflow:hidden}
   border:1px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow-m);
 }
 .photo-slot img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.photo-ph{display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px;text-align:center}
+.photo-ph{display:none;flex-direction:column;align-items:center;gap:14px;padding:30px;text-align:center}
 .photo-ph svg{width:54px;height:54px;color:var(--muted-2);stroke-width:1.2}
 .photo-ph b{font-family:var(--serif);font-size:1.1rem;color:var(--ink-2);font-weight:600}
 .photo-ph span{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-2);font-weight:600;max-width:26ch;line-height:1.8}
@@ -367,6 +367,7 @@ body.menu-open{overflow:hidden}
 .triad-item p{font-size:.92rem;color:rgba(243,237,228,.68);line-height:1.72}
 
 /* ---------- 13. Process timeline ---------- */
+.process-sticky{position:sticky;top:120px}
 .timeline{position:relative;display:grid;gap:0}
 .timeline::before{
   content:"";position:absolute;left:23px;top:14px;bottom:14px;width:1.5px;background:var(--line);
@@ -657,6 +658,7 @@ input[type=range]::-moz-range-thumb{
 @media (max-width:620px){
   .wrap{padding-inline:18px}
   .grid-3,.grid-2,.grid-4{grid-template-columns:1fr}
+  .process-sticky{position:static;top:auto}
   .stats{grid-template-columns:1fr}
   .stat{border-right:0;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:0}

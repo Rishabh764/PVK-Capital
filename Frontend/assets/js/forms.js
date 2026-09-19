@@ -8,18 +8,19 @@
   /* ------------------------------------------------------------------
      CONFIGURE ME
      ------------------------------------------------------------------
-     endpoint : Paste a form endpoint here to receive submissions by email
-                without writing a backend. Works with Formspree
-                (https://formspree.io/f/xxxxxxx), Getform, Web3Forms, or
-                your own API. Leave empty ('') and the form falls back to
-                opening the visitor's mail app addressed to you.
+     endpoint : The deployed Google Apps Script Web App URL (ends in /exec).
+                See google-apps-script/Code.gs and README.md for the
+                five-minute setup. On every submission it emails both the
+                founder and the enquirer automatically. Leave empty ('')
+                and the form falls back to opening the visitor's mail app
+                addressed to you instead.
      inbox    : Your receiving address — used by the mailto fallback.
-     whatsapp : Number in international format, digits only (no + or spaces).
+     phone    : 10-digit number (no +91, no spaces) — used by the tel fallback.
      ------------------------------------------------------------------ */
   var CONFIG = {
-    endpoint: '',
-    inbox: 'contact@pvkcapital.in',
-    whatsapp: '919999999999'
+    endpoint: 'https://script.google.com/macros/s/AKfycby0gtHUXDUIDnS8Q4Y7f8GLNjboQv03mRMiN50AaTn0j_R8eTZgCDhnqWKM8NA5RRtcZA/exec',
+    inbox: 'pvkcapital.in@gmail.com',
+    phone: '9510809046'
   };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
@@ -193,7 +194,7 @@
         showStatus(form, 'ok',
           '<strong>Almost there.</strong> Your mail app is opening with these details filled in — ' +
           'just press send and Vedant will get back to you within one working day. ' +
-          'Prefer to talk now? <a href="tel:+91' + CONFIG.whatsapp.slice(2) + '" style="text-decoration:underline">Call us</a>.');
+          'Prefer to talk now? <a href="tel:+91' + CONFIG.phone + '" style="text-decoration:underline">Call us</a>.');
         return;
       }
 
@@ -201,7 +202,9 @@
 
       fetch(CONFIG.endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        // text/plain avoids a CORS preflight, which Google Apps Script web apps cannot
+        // answer — the body itself is still JSON and is parsed as such server-side.
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(Object.assign({ _subject: subject }, data))
       })
         .then(function (res) {
@@ -215,8 +218,8 @@
         .catch(function () {
           showStatus(form, 'bad',
             'We could not send that just now. Please call us on ' +
-            '<a href="tel:+91' + CONFIG.whatsapp.slice(2) + '" style="text-decoration:underline">+91 ' +
-            CONFIG.whatsapp.slice(2) + '</a> or email ' +
+            '<a href="tel:+91' + CONFIG.phone + '" style="text-decoration:underline">+91 ' +
+            CONFIG.phone + '</a> or email ' +
             '<a href="mailto:' + CONFIG.inbox + '" style="text-decoration:underline">' + CONFIG.inbox + '</a>.');
         })
         .then(function () {
@@ -289,9 +292,6 @@
 
   /* ---------- Fill contact details from CONFIG ---------- */
 
-  document.querySelectorAll('[data-whatsapp]').forEach(function (a) {
-    a.setAttribute('href', 'https://wa.me/' + CONFIG.whatsapp);
-  });
   document.querySelectorAll('[data-inbox]').forEach(function (a) {
     a.setAttribute('href', 'mailto:' + CONFIG.inbox);
     if (a.hasAttribute('data-inbox-text')) a.textContent = CONFIG.inbox;

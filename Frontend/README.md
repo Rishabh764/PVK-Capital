@@ -43,48 +43,62 @@ These placeholders appear across the site. Search and replace them everywhere:
 
 | Placeholder | Where |
 | --- | --- |
-| `+91 99999 99999` and `tel:+919999999999` | Header/footer, contact page, form fallbacks |
-| `contact@pvkcapital.in` | Footer, contact page |
-| `919999999999` (WhatsApp) | `assets/js/forms.js` → `CONFIG.whatsapp` |
-| `Office address to be added` | `contact.html`, "Visit us" card |
+| `+91 95108 09046` and `tel:+919510809046` | Header/footer, contact page, form fallbacks |
+| `pvkcapital.in@gmail.com` | Footer, contact page |
 | LinkedIn `href="#"` | Footer of every page |
 
-The phone number, email and WhatsApp number are also centralised in **`assets/js/forms.js`** at the top:
+The phone number and email are also centralised in **`assets/js/forms.js`** at the top:
 
 ```js
 var CONFIG = {
   endpoint: '',
-  inbox: 'contact@pvkcapital.in',
-  whatsapp: '919999999999'
+  inbox: 'pvkcapital.in@gmail.com',
+  phone: '9510809046'
 };
 ```
 
-Anything marked `data-inbox` or `data-whatsapp` in the HTML is filled in from that object automatically.
+Anything marked `data-inbox` in the HTML is filled in from that object automatically.
 
 ## Making the forms actually deliver
 
-There are three forms: the consultation form on the home page, the long client enquiry form on the
-contact page, and the short contact form below it.
+There are two forms: the consultation form on the home page and the long client enquiry form on the
+contact page. Both post to the same `CONFIG.endpoint`.
 
 **Right now** (`endpoint: ''`), submitting a form validates the input, saves a copy in the visitor's
 browser (`localStorage`, key `pvk_enquiries`), and opens their mail app with every field pre-filled and
 addressed to you. This works with zero setup but relies on the visitor pressing send.
 
-**Recommended for production:** create a free form endpoint and paste it in. No backend required.
+**Recommended for production: Google Apps Script.** On every submission it emails the founder with the
+full enquiry details *and* sends the visitor a confirmation email — no third-party service, no backend
+to host, free on a personal Google account.
 
-1. Sign up at [Formspree](https://formspree.io) (or Getform / Web3Forms — all work the same way).
-2. Create a form and copy the endpoint URL, e.g. `https://formspree.io/f/abcdwxyz`.
-3. Put it in `assets/js/forms.js`:
+1. Go to [script.google.com](https://script.google.com) and create a new project.
+2. Delete the placeholder code and paste in the contents of `google-apps-script/Code.gs` from this repo.
+3. Change `FOUNDER_EMAIL` at the top of the script if it should differ from the site's contact address.
+4. **Deploy ▸ New deployment ▸** type **Web app**, with **Execute as: Me** and **Who has access: Anyone**.
+5. Authorize the script when Google prompts you — it needs permission to send email on your behalf.
+6. Copy the resulting URL (it ends in `/exec`) and paste it into `assets/js/forms.js`:
 
 ```js
 var CONFIG = {
-  endpoint: 'https://formspree.io/f/abcdwxyz',
+  endpoint: 'https://script.google.com/macros/s/XXXXXXXXXXXX/exec',
   ...
 };
 ```
 
-Every submission then arrives in your inbox with the visitor's name, phone, email, city, address,
-selected services, investor type, investment range, preferred call time and message.
+7. Submit a test enquiry on the live site and confirm both the founder notification and the visitor
+   confirmation email arrive.
+
+Whenever you edit `Code.gs` afterwards, create a new deployment version (**Manage deployments ▸ edit ▸
+new version**) — editing the script alone does not update the live `/exec` URL.
+
+Every submission emails the visitor's name, phone, email, city, address, selected services, investor
+type, investment range, preferred call time and message to the founder, and a shorter confirmation
+back to the visitor.
+
+*Alternative:* any JSON-accepting form endpoint works the same way — Formspree, Getform, Web3Forms, or
+your own API — just paste its URL into `CONFIG.endpoint` instead. Only Apps Script sends the visitor a
+confirmation email automatically; the others just forward the submission to your inbox.
 
 ## The calculators
 
@@ -135,8 +149,8 @@ disabled automatically for visitors who have `prefers-reduced-motion` set.
 
 ## Note on content
 
-The copy describes SEBI product categories and regulatory minimums (PMS ₹50 lakh, AIF ₹1 crore, SIF
-₹10 lakh) as they stood when written. Confirm the current position — and PVK Capital's own registration
-details, ARN and any disclosures required of you — before publishing. Placeholder headline figures on
-the home page describe the offering (nine verticals, four asset classes) rather than claiming any AUM
-or performance record, so nothing needs to be walked back.
+The copy describes SEBI product categories and regulatory minimums (AIF ₹1 crore) as they stood when
+written. Confirm the current position — and PVK Capital's own registration details, ARN and any
+disclosures required of you — before publishing. Placeholder headline figures on the home page describe
+the offering (seven verticals, four asset classes) rather than claiming any AUM or performance record,
+so nothing needs to be walked back.
