@@ -29,8 +29,13 @@ Portrait orientation, 4:5 ratio, at least 800 × 1000 px. It appears on `index.h
 Until the file exists, an elegant placeholder is shown automatically (no broken image icon), so you can
 drop it in at any time with no code changes.
 
-The logo is already in place at `assets/img/pvk-logo.png` and is used in the header, footer, hero
-emblem and browser tab icon.
+The logo ships as two transparent SVGs (no white box, sits naturally on any background — cream, white,
+or the dark footer):
+
+- `assets/img/pvk-icon.svg` — emblem only (shield + PVK monogram). Used in the nav, footer and browser
+  tab icon, everywhere the "PVK Capital" wordmark already appears as live text beside it.
+- `assets/img/pvk-logo.svg` — full lockup (emblem + "PVK Capital" + tagline). Used once, standalone, in
+  the homepage hero.
 
 ## Details to replace before going live
 
@@ -124,7 +129,8 @@ Frontend/
     ├── js/calculators.js    SIP + lumpsum maths, donut and bar chart rendering
     ├── js/forms.js          validation, submission, URL prefill, contact config
     └── img/
-        ├── pvk-logo.png     supplied logo
+        ├── pvk-icon.svg     emblem only — transparent, nav/footer/favicon
+        ├── pvk-logo.svg     full lockup — transparent, hero only
         └── founder.jpg      ← to be added
 ```
 
