@@ -326,11 +326,11 @@ body.menu-open{overflow:hidden}
 .photo-ph b{font-family:var(--serif);font-size:1.1rem;color:var(--ink-2);font-weight:600}
 .photo-ph span{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-2);font-weight:600;max-width:26ch;line-height:1.8}
 .founder-badge{
-  position:absolute;z-index:2;right:-26px;bottom:34px;background:var(--surface);
-  border:1px solid var(--line);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-m);
+  position:absolute;z-index:2;right:-26px;bottom:-28px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-md);padding:10px 14px;box-shadow:var(--shadow-m);
 }
-.founder-badge b{display:block;font-family:var(--serif);font-size:1.24rem;line-height:1.2}
-.founder-badge span{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--maroon);font-weight:700}
+.founder-badge b{display:block;font-family:var(--serif);font-size:1rem;line-height:1.2}
+.founder-badge span{font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;color:var(--maroon);font-weight:700}
 .quote{
   font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.42;font-style:italic;
   color:var(--ink);position:relative;padding-left:26px;
