@@ -155,9 +155,9 @@
     // Pair each range with its number input and keep both in sync.
     root.querySelectorAll('[data-field]').forEach(function (group) {
       var key = group.getAttribute('data-field');
-      var range = group.querySelector('input[type=range]');
-      var num = group.querySelector('input[type=number]');
-      fields[key] = { group: group, range: range, num: num };
+      var range = /** @type {HTMLInputElement|null} */ (group.querySelector('input[type=range]'));
+      var num = /** @type {HTMLInputElement|null} */ (group.querySelector('input[type=number]'));
+      fields[key] = range;
 
       function clamp(v) {
         var min = parseFloat(range.min), max = parseFloat(range.max);
@@ -178,22 +178,22 @@
         num.addEventListener('input', function () {
           var v = parseFloat(num.value);
           if (isNaN(v)) return;                 // let the user finish typing
-          if (range) { range.value = clamp(v); syncRangeFill(range); }
+          if (range) { range.value = String(clamp(v)); syncRangeFill(range); }
           update();
         });
         num.addEventListener('blur', function () {
           var v = clamp(parseFloat(num.value));
-          num.value = v;
-          if (range) { range.value = v; syncRangeFill(range); }
+          num.value = String(v);
+          if (range) { range.value = String(v); syncRangeFill(range); }
           update();
         });
       }
     });
 
     function val(key, fallback) {
-      var f = fields[key];
-      if (!f || !f.range) return fallback;
-      return parseFloat(f.range.value);
+      var range = fields[key];
+      if (!range) return fallback;
+      return parseFloat(range.value);
     }
 
     function out(name) { return root.querySelector('[data-out="' + name + '"]'); }
@@ -217,17 +217,11 @@
       var investedPct = result.value > 0 ? (result.invested / result.value) * 100 : 100;
 
       setText('total', money(result.value));
-      setText('total-short', moneyShort(result.value));
       setText('total-words', 'approximately ' + amountWords(result.value));
       setText('invested', money(result.invested));
       setText('returns', money(result.gains));
-      setText('invested-short', moneyShort(result.invested));
-      setText('returns-short', moneyShort(result.gains));
       setText('multiple', (result.invested > 0 ? (result.value / result.invested).toFixed(2) : '0') + 'x');
       setText('gain-pct', (result.invested > 0 ? Math.round((result.gains / result.invested) * 100) : 0) + '%');
-      setText('donut-pct', Math.round(100 - investedPct) + '%');
-      setText('years-label', years + (years === 1 ? ' year' : ' years'));
-      setText('monthly-label', money(val('amount', 10000)));
 
       setDonut(root, investedPct);
       drawChart(root, result.series);
@@ -241,12 +235,11 @@
         var note = label + ' for ' + years + ' years at ' + rate +
           '% p.a. — projected corpus ' + moneyShort(result.value) + '.';
         cta.setAttribute('href', 'contact.html?service=' +
-          encodeURIComponent(mode === 'lumpsum' ? 'Mutual Funds' : 'Mutual Funds') +
+          encodeURIComponent('Mutual Funds') +
           '&message=' + encodeURIComponent(note));
       }
     }
 
-    root.__update = update;
     update();
   }
 
@@ -264,18 +257,10 @@
           t.setAttribute('aria-selected', on ? 'true' : 'false');
         });
 
-        document.querySelectorAll('[data-panel]').forEach(function (panel) {
-          var show = panel.getAttribute('data-panel') === target;
-          panel.hidden = !show;
-          if (show) {
-            var calc = panel.querySelector('[data-calc]');
-            if (calc && calc.__update) calc.__update();
-          }
+        document.querySelectorAll('[data-panel]').forEach(function (/** @type {HTMLElement} */ panel) {
+          panel.hidden = panel.getAttribute('data-panel') !== target;
         });
       });
     });
   });
-
-  /* Expose for reuse elsewhere (e.g. future goal planners) */
-  window.PVKCalc = { sipSeries: sipSeries, lumpsumSeries: lumpsumSeries, money: money, moneyShort: moneyShort };
 })();

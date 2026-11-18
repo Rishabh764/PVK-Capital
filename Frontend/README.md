@@ -11,23 +11,17 @@ python -m http.server 8000      # then visit http://localhost:8000
 
 | File | What it contains |
 | --- | --- |
-| `index.html` | Hero, three principles, all nine services, embedded SIP calculator, founder section, 5-step process, who we serve, enquiry form |
+| `index.html` | Hero, three principles, all seven services, embedded SIP calculator, founder section, 5-step process, who we serve, enquiry form |
 | `about.html` | Vedant Shah's story, the Preservation / Value / Knowledge philosophy, six commitments, FAQ |
-| `services.html` | Full detail on all nine mandates, each with an "at a glance" fact panel and a direct enquiry link |
+| `services.html` | Full detail on all seven mandates, each with an "at a glance" fact panel and a direct enquiry link |
 | `calculators.html` | SIP (with optional annual step-up) and lumpsum calculators, both in INR, plus the formulas used |
-| `contact.html` | Contact details, the long client enquiry form, a short contact form, and a practical FAQ |
+| `contact.html` | Contact details, the client enquiry form, and a practical FAQ |
 
-## Files to add
+## Images
 
-**1. The founder's photograph** — save it as:
-
-```
-assets/img/founder.jpg
-```
-
-Portrait orientation, 4:5 ratio, at least 800 × 1000 px. It appears on `index.html` and `about.html`.
-Until the file exists, an elegant placeholder is shown automatically (no broken image icon), so you can
-drop it in at any time with no code changes.
+The founder's photograph is `assets/img/founder.jpg` (portrait, 4:5 ratio, at least 800 × 1000 px). It
+appears on `index.html` and `about.html`. If the file ever fails to load, a styled placeholder is shown
+instead of a broken image icon.
 
 The logo ships as two transparent SVGs (no white box, sits naturally on any background — cream, white,
 or the dark footer):
@@ -37,21 +31,20 @@ or the dark footer):
 - `assets/img/pvk-logo.svg` — full lockup (emblem + "PVK Capital" + tagline). Used once, standalone, in
   the homepage hero.
 
-## Details to replace before going live
+## Contact details
 
-These placeholders appear across the site. Search and replace them everywhere:
+The phone number (`+91 95108 09046` / `tel:+919510809046`) and email (`pvkcapital.in@gmail.com`) appear
+in the header/footer and on the contact page of every page. If they change, search and replace them
+everywhere.
 
-| Placeholder | Where |
-| --- | --- |
-| `+91 95108 09046` and `tel:+919510809046` | Header/footer, contact page, form fallbacks |
-| `pvkcapital.in@gmail.com` | Footer, contact page |
-| LinkedIn `href="#"` | Footer of every page |
+Still outstanding: the LinkedIn icon in the footer of every page links to `href="#"` — replace it with the
+real profile URL.
 
 The phone number and email are also centralised in **`assets/js/forms.js`** at the top:
 
 ```js
 var CONFIG = {
-  endpoint: '',
+  endpoint: 'https://script.google.com/macros/s/.../exec',
   inbox: 'pvkcapital.in@gmail.com',
   phone: '9510809046'
 };
@@ -59,18 +52,20 @@ var CONFIG = {
 
 Anything marked `data-inbox` in the HTML is filled in from that object automatically.
 
-## Making the forms actually deliver
+## How the forms deliver
 
-There are two forms: the consultation form on the home page and the long client enquiry form on the
+There are two forms: the consultation form on the home page and the client enquiry form on the
 contact page. Both post to the same `CONFIG.endpoint`.
 
-**Right now** (`endpoint: ''`), submitting a form validates the input, saves a copy in the visitor's
-browser (`localStorage`, key `pvk_enquiries`), and opens their mail app with every field pre-filled and
-addressed to you. This works with zero setup but relies on the visitor pressing send.
+`CONFIG.endpoint` is set to a deployed **Google Apps Script** web app. On every submission it emails the
+founder with the full enquiry details *and* sends the visitor a confirmation email — no third-party
+service, no backend to host, free on a personal Google account. Every submission is also saved in the
+visitor's browser (`localStorage`, key `pvk_enquiries`).
 
-**Recommended for production: Google Apps Script.** On every submission it emails the founder with the
-full enquiry details *and* sends the visitor a confirmation email — no third-party service, no backend
-to host, free on a personal Google account.
+If `endpoint` is ever set back to `''`, submitting a form instead opens the visitor's mail app with every
+field pre-filled and addressed to you — this works with zero setup but relies on the visitor pressing send.
+
+To set up (or re-create) the Apps Script endpoint:
 
 1. Go to [script.google.com](https://script.google.com) and create a new project.
 2. Delete the placeholder code and paste in the contents of `google-apps-script/Code.gs` from this repo.
@@ -125,13 +120,13 @@ Frontend/
 ├── README.md
 └── assets/
     ├── css/style.css        design tokens, components, responsive rules
-    ├── js/main.js           nav, scroll reveal, counters, accordions, timeline
+    ├── js/main.js           nav, scroll reveal, accordions, timeline
     ├── js/calculators.js    SIP + lumpsum maths, donut and bar chart rendering
     ├── js/forms.js          validation, submission, URL prefill, contact config
     └── img/
         ├── pvk-icon.svg     emblem only — transparent, nav/footer/favicon
         ├── pvk-logo.svg     full lockup — transparent, hero only
-        └── founder.jpg      ← to be added
+        └── founder.jpg      founder portrait (index + about)
 ```
 
 ## Design notes
@@ -143,7 +138,7 @@ Google Fonts with local fallbacks.
 Everything is defined as CSS custom properties at the top of `style.css` — change the palette there and
 it updates across all five pages.
 
-Motion: entrance animations on the hero, scroll-triggered reveals, animated counters, a scroll-linked
+Motion: entrance animations on the hero, scroll-triggered reveals, a scroll-linked
 progress line on the process timeline, hover lift on cards, and a reading-progress bar. All of it is
 disabled automatically for visitors who have `prefers-reduced-motion` set.
 
@@ -151,6 +146,6 @@ disabled automatically for visitors who have `prefers-reduced-motion` set.
 
 The copy describes SEBI product categories and regulatory minimums (AIF ₹1 crore) as they stood when
 written. Confirm the current position — and PVK Capital's own registration details, ARN and any
-disclosures required of you — before publishing. Placeholder headline figures on the home page describe
-the offering (seven verticals, four asset classes) rather than claiming any AUM or performance record,
-so nothing needs to be walked back.
+disclosures required of you — before publishing. Headline figures on the home page describe the
+offering (seven solution verticals) rather than claiming any AUM or performance record, so nothing
+needs to be walked back.

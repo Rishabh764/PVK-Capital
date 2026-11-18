@@ -24,7 +24,7 @@
   };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
-  var PHONE_RE = /^(\+?91[\-\s]?)?[6-9]\d{9}$/;
+  var PHONE_RE = /^(\+?91[-\s]?)?[6-9]\d{9}$/;
 
   /* ---------- Validation ---------- */
 
@@ -81,6 +81,7 @@
 
   function validateForm(form) {
     var ok = true;
+    /** @type {HTMLElement|null} */
     var firstBad = null;
 
     form.querySelectorAll('input, select, textarea').forEach(function (input) {
@@ -234,7 +235,7 @@
     form.setAttribute('novalidate', 'novalidate');
     form.addEventListener('submit', handleSubmit(form));
 
-    form.querySelectorAll('input, select, textarea').forEach(function (input) {
+    form.querySelectorAll('input, select, textarea').forEach(function (/** @type {HTMLInputElement} */ input) {
       input.addEventListener('blur', function () {
         if ((input.value || '').trim() || input.hasAttribute('required')) validateField(input);
       });
@@ -264,18 +265,18 @@
     var messageParam = params.get('message');
 
     if (messageParam) {
-      document.querySelectorAll('textarea[name="message"]').forEach(function (ta) {
+      document.querySelectorAll('textarea[name="message"]').forEach(function (/** @type {HTMLTextAreaElement} */ ta) {
         if (!ta.value) ta.value = messageParam;
       });
     }
 
     if (serviceParam) {
-      document.querySelectorAll('select[name="service"]').forEach(function (sel) {
-        Array.prototype.forEach.call(sel.options, function (opt) {
+      document.querySelectorAll('select[name="service"]').forEach(function (/** @type {HTMLSelectElement} */ sel) {
+        Array.prototype.forEach.call(sel.options, function (/** @type {HTMLOptionElement} */ opt) {
           if (opt.value.toLowerCase() === serviceParam.toLowerCase()) sel.value = opt.value;
         });
       });
-      document.querySelectorAll('[data-require-one] input[type=checkbox]').forEach(function (box) {
+      document.querySelectorAll('[data-require-one] input[type=checkbox]').forEach(function (/** @type {HTMLInputElement} */ box) {
         if (box.value.toLowerCase() === serviceParam.toLowerCase()) box.checked = true;
       });
     }
