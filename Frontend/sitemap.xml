@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://pvkcapital.com/</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-18</lastmod>
+    <image:image>
+      <image:loc>https://pvkcapital.com/assets/img/founder.webp</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://pvkcapital.com/about.html</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://pvkcapital.com/about</loc>
+    <lastmod>2026-11-18</lastmod>
+    <image:image>
+      <image:loc>https://pvkcapital.com/assets/img/founder.webp</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://pvkcapital.com/services.html</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://pvkcapital.com/services</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
-    <loc>https://pvkcapital.com/calculators.html</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://pvkcapital.com/calculators</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
-    <loc>https://pvkcapital.com/contact.html</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://pvkcapital.com/contact</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
 </urlset>

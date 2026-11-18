@@ -1,0 +1,7 @@
+# Netlify response headers (this file is read by Netlify and not served to visitors).
+# Project docs and the Apps Script source are deployed alongside the site; keep them out of search results.
+/README.md
+  X-Robots-Tag: noindex, nofollow
+
+/google-apps-script/*
+  X-Robots-Tag: noindex, nofollow

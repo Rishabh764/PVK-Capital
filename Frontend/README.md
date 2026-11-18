@@ -19,17 +19,32 @@ python -m http.server 8000      # then visit http://localhost:8000
 
 ## Images
 
-The founder's photograph is `assets/img/founder.jpg` (portrait, 4:5 ratio, at least 800 × 1000 px). It
-appears on `index.html` and `about.html`. If the file ever fails to load, a styled placeholder is shown
-instead of a broken image icon.
+The pages use small, web-optimized images. The large originals are kept as masters to re-export from:
 
-The logo ships as two transparent SVGs (no white box, sits naturally on any background — cream, white,
-or the dark footer):
+| Used on the site | Master | What it is |
+| --- | --- | --- |
+| `assets/img/founder.webp` (1000 px wide) | `founder.jpg` | Founder portrait on `index.html` and `about.html`. If it fails to load, a styled placeholder is shown instead. |
+| `assets/img/pvk-icon.webp` (240 px wide) | `pvk-icon.svg` | Emblem only — nav and footer, next to the live "PVK CAPITAL" text. |
+| `assets/img/pvk-logo.webp` (700 px wide) | `pvk-logo.svg` | Full lockup (emblem + name + tagline) — homepage hero. |
 
-- `assets/img/pvk-icon.svg` — emblem only (shield + PVK monogram). Used in the nav, footer and browser
-  tab icon, everywhere the "PVK Capital" wordmark already appears as live text beside it.
-- `assets/img/pvk-logo.svg` — full lockup (emblem + "PVK Capital" + tagline). Used once, standalone, in
-  the homepage hero.
+All logo images are transparent, so they sit naturally on cream, white or the dark footer. If you replace a
+master, re-export the matching `.webp` at the width above (any converter works; keep the transparency).
+
+Icons and sharing images:
+
+- `favicon.ico` (16/32/48 px), `assets/img/icon-192.png`, `assets/img/apple-touch-icon.png` — browser tab,
+  Google search result and phone home-screen icons.
+- `assets/img/og-image.jpg` (1200 × 630) — preview image when a page is shared on WhatsApp, LinkedIn, etc.
+
+## SEO
+
+Every page's `<head>` carries its own title, meta description, canonical URL (`https://pvkcapital.com/...`,
+without `.html` — the form Netlify serves), Open Graph / Twitter sharing tags, and a JSON-LD block that
+describes the firm (FinancialService, Vadodara), the founder, breadcrumbs, the FAQs on the About and
+Contact pages, the services and the calculator. If you change a page's FAQ wording, phone number,
+address or services, update the JSON-LD on that page to match — Google requires it to match the visible
+text. `sitemap.xml` lists the five canonical URLs; update its `<lastmod>` dates when content changes.
+`_headers` (read by Netlify, not served) keeps `README.md` and the Apps Script source out of search results.
 
 ## Contact details
 
@@ -124,9 +139,11 @@ Frontend/
     ├── js/calculators.js    SIP + lumpsum maths, donut and bar chart rendering
     ├── js/forms.js          validation, submission, URL prefill, contact config
     └── img/
-        ├── pvk-icon.svg     emblem only — transparent, nav/footer/favicon
-        ├── pvk-logo.svg     full lockup — transparent, hero only
-        └── founder.jpg      founder portrait (index + about)
+        ├── pvk-icon.webp    emblem only — nav/footer (master: pvk-icon.svg)
+        ├── pvk-logo.webp    full lockup — hero (master: pvk-logo.svg)
+        ├── founder.webp     founder portrait (master: founder.jpg)
+        ├── og-image.jpg     link-sharing preview image
+        └── icon-192.png, apple-touch-icon.png   app/search icons (favicon.ico sits at the site root)
 ```
 
 ## Design notes
