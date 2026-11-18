@@ -667,13 +667,21 @@ input[type="range"]::-moz-range-thumb{
 }
 
 @media (max-width:400px){
-  /* The tagline's letter-spacing makes it wide relative to its font-size; on the
-     smallest phones it crowds the burger button, so drop it and keep just the name. */
-  .brand-txt span{display:none}
+  /* The tagline's wide letter-spacing would crowd the burger button on phones,
+     so tighten it here (and again below 350px) to keep it beside the logo. */
+  .brand{gap:10px}
+  .brand-txt span{font-size:7.5px;letter-spacing:.13em;white-space:nowrap}
   .hero h1{font-size:clamp(2.2rem,9vw,2.7rem)}
   .h-xl{font-size:clamp(2.1rem,9vw,2.6rem)}
   .quote{font-size:1.2rem;padding-left:20px}
   .calc-result-main b{font-size:clamp(1.85rem,9vw,2.4rem)}
+}
+
+@media (max-width:350px){
+  .brand{gap:8px}
+  .brand img,.nav.solid .brand img{height:36px}
+  .brand-txt b{font-size:1.08rem}
+  .brand-txt span{font-size:7px;letter-spacing:.06em}
 }
 
 /* ---------- 22. Motion / print ---------- */

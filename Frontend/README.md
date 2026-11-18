@@ -37,8 +37,8 @@ The phone number (`+91 95108 09046` / `tel:+919510809046`) and email (`pvkcapita
 in the header/footer and on the contact page of every page. If they change, search and replace them
 everywhere.
 
-Still outstanding: the LinkedIn icon in the footer of every page links to `href="#"` — replace it with the
-real profile URL.
+The LinkedIn icon in the footer of every page links to https://www.linkedin.com/company/pvk-capital/
+(opens in a new tab).
 
 The phone number and email are also centralised in **`assets/js/forms.js`** at the top:
 
